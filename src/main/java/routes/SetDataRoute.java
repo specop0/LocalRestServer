@@ -2,7 +2,7 @@ package routes;
 
 import models.IDatabase;
 
-public class SetDataRoute extends DataRouteBase {
+public class SetDataRoute extends DataRouteWithAuthBase {
 
     public SetDataRoute(IDatabase database) {
         super(database);

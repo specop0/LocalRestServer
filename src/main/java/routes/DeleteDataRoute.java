@@ -2,12 +2,10 @@ package routes;
 
 import models.IDatabase;
 
-public class DeleteDataRoute extends DataRouteBase {
+public class DeleteDataRoute extends DataRouteWithAuthBase {
 
     public DeleteDataRoute(IDatabase database) {
         super(database);
-        this.SetAuthorizationRequired(false);
-        this.SetKeyRequired(false);
     }
 
     @Override

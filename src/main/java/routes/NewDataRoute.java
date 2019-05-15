@@ -1,6 +1,8 @@
 package routes;
 
 import models.IDatabase;
+import spark.Request;
+import spark.Response;
 
 public class NewDataRoute extends DataRouteBase {
 
@@ -9,7 +11,7 @@ public class NewDataRoute extends DataRouteBase {
     }
 
     @Override
-    protected String Handle(IDatabase database, String authorization, String key, String data) {
+    protected String Handle(IDatabase database, Request request, Response response) {
         return database.CreateNewUser();
     }
 }
