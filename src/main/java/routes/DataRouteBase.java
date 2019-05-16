@@ -1,7 +1,5 @@
 package routes;
 
-import java.util.HashMap;
-import java.util.Map;
 import models.IDatabase;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +13,8 @@ public abstract class DataRouteBase implements Route {
         this.Database = database;
     }
 
+    public static final String SINGLE_DATA_KEY = "$data";
+
     private final IDatabase Database;
 
     @Override
@@ -26,7 +26,7 @@ public abstract class DataRouteBase implements Route {
             try {
                 jsonObject = new JSONObject(result);
             } catch (JSONException ex) {
-                jsonObject.put("$data", result);
+                jsonObject.put(SINGLE_DATA_KEY, result);
             }
         }
 
