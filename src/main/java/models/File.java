@@ -27,7 +27,7 @@ public class File {
         } catch (IOException ex) {
             Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
     }
 
@@ -37,7 +37,7 @@ public class File {
                 out.write(content);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(LocalDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
