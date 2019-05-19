@@ -1,6 +1,7 @@
 package routes;
 
 import models.IDatabase;
+import org.json.JSONObject;
 
 public class SetDataRoute extends DataRouteWithAuthBase {
 
@@ -9,7 +10,7 @@ public class SetDataRoute extends DataRouteWithAuthBase {
     }
 
     @Override
-    protected String Handle(IDatabase database, String authorization, String key, String data) {
+    protected JSONObject Handle(IDatabase database, String authorization, String key, JSONObject data) {
         database.SaveData(authorization, key, data);
         return null;
     }

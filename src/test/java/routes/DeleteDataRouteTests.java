@@ -3,6 +3,7 @@ package routes;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
 import java.util.Collection;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,8 +30,10 @@ public class DeleteDataRouteTests extends RouteTestsBase {
         String key = this.GetUniqueName();
         if (IsKeyPresent) {
             String data = this.GetUniqueName();
-            this.Database.SaveData(authorization, key, data);
-            Assert.assertEquals(data, this.Database.GetData(authorization, key));
+            JSONObject expectedData = new JSONObject();
+            expectedData.put(DataRouteBase.SINGLE_DATA_KEY, data);
+            this.Database.SaveData(authorization, key, expectedData);
+            Assert.assertEquals(expectedData.toString(), this.Database.GetData(authorization, key).toString());
         } else {
             Assert.assertNull(this.Database.GetData(authorization, key));
         }

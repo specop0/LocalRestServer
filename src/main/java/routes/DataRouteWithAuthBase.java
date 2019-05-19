@@ -12,19 +12,20 @@ public abstract class DataRouteWithAuthBase extends DataRouteBase {
     }
 
     @Override
-    protected String Handle(IDatabase database, Request request, Response response) {
+    protected JSONObject Handle(IDatabase database, Request request, Response response) {
         String[] urlWildcards = request.splat();
         if (urlWildcards.length != 2) {
             return null;
         }
 
         // input must be JSON
-        String data = request.body();
-        if (data != null && !"".equals(data)) {
-            data = new JSONObject(data).toString();
+        JSONObject data = new JSONObject();
+        String dataRaw = request.body();
+        if (dataRaw != null && !"".equals(dataRaw)) {
+            data = new JSONObject(dataRaw);
         }
         return this.Handle(database, urlWildcards[0], urlWildcards[1], data);
     }
 
-    protected abstract String Handle(IDatabase database, String authorization, String key, String data);
+    protected abstract JSONObject Handle(IDatabase database, String authorization, String key, JSONObject data);
 }

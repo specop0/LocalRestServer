@@ -9,7 +9,7 @@ public class LocalDatabase implements IDatabase {
         this.Start();
     }
 
-    protected HashMap<String, HashMap<String, String>> Data = new HashMap<>();
+    protected HashMap<String, HashMap<String, JSONObject>> Data = new HashMap<>();
     protected RandomString Generator = new RandomString();
 
     @Override
@@ -18,8 +18,8 @@ public class LocalDatabase implements IDatabase {
     }
 
     @Override
-    public String GetData(String authorization, String key) {
-        HashMap<String, String> appData = this.Data.get(authorization);
+    public JSONObject GetData(String authorization, String key) {
+        HashMap<String, JSONObject> appData = this.Data.get(authorization);
         if (appData == null) {
             return null;
         }
@@ -28,19 +28,23 @@ public class LocalDatabase implements IDatabase {
     }
 
     @Override
-    public void SaveData(String authorization, String key, String data) {
-        HashMap<String, String> appData = this.Data.get(authorization);
+    public void SaveData(String authorization, String key, JSONObject data) {
+        HashMap<String, JSONObject> appData = this.Data.get(authorization);
         if (appData == null) {
             appData = new HashMap<>();
             this.Data.put(authorization, appData);
         }
 
-        appData.put(key, data);
+        if (data.isEmpty()) {
+            appData.remove(key);
+        } else {
+            appData.put(key, data);
+        }
     }
 
     @Override
     public void DeleteData(String authorization, String key) {
-        HashMap<String, String> appData = this.Data.get(authorization);
+        HashMap<String, JSONObject> appData = this.Data.get(authorization);
 
         if (appData != null) {
             appData.remove(key);
@@ -58,7 +62,7 @@ public class LocalDatabase implements IDatabase {
             for (String authorization : serializedData.keySet()) {
                 JSONObject serializedEntry = serializedData.getJSONObject(authorization);
                 for (String key : serializedEntry.keySet()) {
-                    this.SaveData(authorization, key, serializedEntry.getString(key));
+                    this.SaveData(authorization, key, serializedEntry.getJSONObject(key));
                 }
             }
         }

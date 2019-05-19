@@ -19,20 +19,23 @@ public abstract class DataRouteBase implements Route {
 
     @Override
     public Object handle(Request rqst, Response rspns) throws Exception {
-        JSONObject jsonObject = new JSONObject();
-
-        String result = this.Handle(this.Database, rqst, rspns);
-        if (result != null) {
-            try {
-                jsonObject = new JSONObject(result);
-            } catch (JSONException ex) {
-                jsonObject.put(SINGLE_DATA_KEY, result);
-            }
-        }
-
         rspns.type("application/json");
-        return jsonObject;
+        JSONObject result = this.Handle(this.Database, rqst, rspns);
+        if (result != null) {
+            return result;
+        }
+        return this.MakeEmptyJSON();
     }
 
-    protected abstract String Handle(IDatabase database, Request request, Response response);
+    protected abstract JSONObject Handle(IDatabase database, Request request, Response response);
+
+    protected JSONObject MakeSimpleJSON(String data) {
+        JSONObject jsonData = new JSONObject();
+        jsonData.put(SINGLE_DATA_KEY, data);
+        return jsonData;
+    }
+
+    protected JSONObject MakeEmptyJSON() {
+        return new JSONObject();
+    }
 }

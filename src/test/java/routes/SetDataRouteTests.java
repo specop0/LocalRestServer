@@ -26,7 +26,7 @@ public class SetDataRouteTests extends RouteTestsBase {
         Assert.assertEquals(HttpURLConnection.HTTP_OK, response.GetStatus());
 
         Assert.assertTrue(response.GetBody().isEmpty());
-        JSONObject actualData = new JSONObject(this.Database.GetData(dataAuthorization, dataKey));
+        JSONObject actualData = this.Database.GetData(dataAuthorization, dataKey);
         Assert.assertArrayEquals(expectedData.keySet().toArray(), JSONObject.getNames(actualData));
         for (String key : expectedData.keySet()) {
             Assert.assertEquals(expectedData.get(key), actualData.get(key));
@@ -44,6 +44,22 @@ public class SetDataRouteTests extends RouteTestsBase {
 
         Assert.assertEquals(HttpURLConnection.HTTP_INTERNAL_ERROR, response.GetStatus());
         Assert.assertNull(response.GetBodyRaw());
+        Assert.assertNull(this.Database.GetData(dataAuthorization, dataKey));
+    }
+
+    @Test
+    public void TestSetNullJsonData() {
+        String dataAuthorization = this.GetUniqueName();
+        String dataKey = this.GetUniqueName();
+        this.Database.SaveData(dataAuthorization, dataKey, new JSONObject("{0:1}"));
+        Assert.assertNotNull(this.Database.GetData(dataAuthorization, dataKey));
+        Assert.assertFalse(this.Database.GetData(dataAuthorization, dataKey).isEmpty());
+
+        String url = this.GetUrl(dataAuthorization, dataKey);
+        Response response = this.Do(url, "PUT", null);
+
+        Assert.assertEquals(HttpURLConnection.HTTP_OK, response.GetStatus());
+        Assert.assertTrue(response.GetBody().isEmpty());
         Assert.assertNull(this.Database.GetData(dataAuthorization, dataKey));
     }
 }
