@@ -14,7 +14,7 @@ public class File {
         try {
             StringBuilder stringBuilder = new StringBuilder();
             try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-                String ls = System.getProperty("line.separator");
+                String ls = System.lineSeparator();
                 String line;
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
