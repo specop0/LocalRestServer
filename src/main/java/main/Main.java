@@ -1,12 +1,13 @@
 package main;
 
+import java.io.IOException;
 import models.IDatabase;
 import models.LocalDatabase;
 import routes.Routes;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int port = 6491;
         if (args.length > 0) {
             try {
@@ -28,5 +29,9 @@ public class Main {
         });
 
         System.out.println(String.format("Endpoint listening at: localhost:%d", port));
+        
+        System.in.read();
+        spark.Spark.stop();
+        spark.Spark.awaitStop();
     }
 }
