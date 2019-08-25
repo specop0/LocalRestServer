@@ -5,7 +5,10 @@ import org.json.JSONObject;
 
 public class LocalDatabase implements IDatabase {
 
-    public LocalDatabase() {
+    public final String DatabaseFilename;
+
+    public LocalDatabase(String databaseFilename) {
+        this.DatabaseFilename = databaseFilename;
         this.Start();
     }
 
@@ -56,7 +59,7 @@ public class LocalDatabase implements IDatabase {
     }
 
     private void Start() {
-        String content = File.ReadAllText("localDatabase.json");
+        String content = File.ReadAllText(this.DatabaseFilename);
         if (content != null) {
             JSONObject serializedData = new JSONObject(content);
             for (String authorization : serializedData.keySet()) {
@@ -71,6 +74,6 @@ public class LocalDatabase implements IDatabase {
     @Override
     public void Stop() {
         JSONObject serializedData = new JSONObject(this.Data);
-        File.WriteAllText("localDatabase.json", serializedData.toString());
+        File.WriteAllText(this.DatabaseFilename, serializedData.toString());
     }
 }

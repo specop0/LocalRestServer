@@ -6,7 +6,8 @@ Useful with cron job which need to load & save data, but should avoid file syste
 
 # Configuration
 
-First optional argument is the port of the server. Default is 6491.
+First optional argument is the filename of the JSON file. Default is "localDatabase.json".
+Second optional argument is the port of the server. Default is 6491.
 
 ## Usage
 
