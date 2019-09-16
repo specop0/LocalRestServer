@@ -15,7 +15,7 @@ public abstract class DataRouteBase implements Route {
 
     public static final String SINGLE_DATA_KEY = "$data";
 
-    private final IDatabase Database;
+    protected final IDatabase Database;
 
     @Override
     public Object handle(Request rqst, Response rspns) throws Exception {

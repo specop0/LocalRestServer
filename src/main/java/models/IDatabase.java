@@ -12,5 +12,5 @@ public interface IDatabase {
 
     void DeleteData(String authorization, String key);
 
-    void Stop();
+    void Save();
 }

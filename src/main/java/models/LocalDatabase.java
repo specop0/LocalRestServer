@@ -72,7 +72,7 @@ public class LocalDatabase implements IDatabase {
     }
 
     @Override
-    public void Stop() {
+    public void Save() {
         JSONObject serializedData = new JSONObject(this.Data);
         File.WriteAllText(this.DatabaseFilename, serializedData.toString());
     }

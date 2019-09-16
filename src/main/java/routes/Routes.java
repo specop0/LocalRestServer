@@ -10,5 +10,6 @@ public class Routes {
         spark.Spark.put("/data/*/*", "application/json", new SetDataRoute(database));
         spark.Spark.delete("/data/*/*", "application/json", new DeleteDataRoute(database));
         spark.Spark.post("/data/new", "application/json", new NewDataRoute(database));
+        spark.Spark.options("data/*", "application/json", new OptionsDataRoute(database));
     }
 }
