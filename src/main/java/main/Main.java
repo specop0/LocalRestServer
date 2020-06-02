@@ -34,8 +34,6 @@ public class Main {
 
         System.out.println(String.format("Endpoint listening at: localhost:%d", port));
 
-        System.in.read();
-        spark.Spark.stop();
         spark.Spark.awaitStop();
     }
 }
