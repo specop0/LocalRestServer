@@ -19,8 +19,8 @@ public class DeleteDataRouteTests extends RouteTestsBase {
     protected boolean IsKeyPresent;
 
     @Parameterized.Parameters
-    public static Collection DeleteCases() {
-        Object[] flags = new Object[]{true, false};
+    public static Collection<Object> DeleteCases() {
+        Object[] flags = new Object[] { true, false };
         return Arrays.asList(flags);
     }
 

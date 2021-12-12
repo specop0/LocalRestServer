@@ -1,7 +1,6 @@
 package routes;
 
 import models.IDatabase;
-import org.json.JSONException;
 import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
