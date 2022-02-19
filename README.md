@@ -1,4 +1,4 @@
-# REST server to use in local environment
+# local JSON database with REST server to use in local environment
 
 REST server to load & save JSON data. Data is saved in a JSON file at shutdown.
 
