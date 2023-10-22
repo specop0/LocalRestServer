@@ -6,8 +6,7 @@ Useful with cron job which need to load & save data, but should avoid file syste
 
 # Configuration
 
-First optional argument is the filename of the JSON file. Default is "localDatabase.json".
-Second optional argument is the port of the server. Default is 6491.
+First optional argument is the filename of the JSON file. Default is "localDatabase.json". Second optional argument is the port of the server. Default is 6491.
 
 ## Usage
 
@@ -15,13 +14,13 @@ Second optional argument is the port of the server. Default is 6491.
 
 Get an authorization token to save data for an application.
 
-```http
+```
 POST http://localhost:6491/data/new
 ```
 
 ### Save
 
-```http
+```
 PUT http://localhost:6491/data/[authorization]/[key]
 ```
 
@@ -29,12 +28,12 @@ The body must be JSON data to save.
 
 ### Load
 
-```http
+```
 GET http://localhost:6491/data/[authorization]/[key]
 ```
 
 ### Delete
 
-```http
+```
 DEL http://localhost:6491/data/[authorization]/[key]
 ```
