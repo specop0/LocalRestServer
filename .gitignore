@@ -1,6 +1,5 @@
-target/
-localDatabase.json
+# Java
+target
 
-.settings
-.project
-.classpath
+# Data
+localDatabase.json

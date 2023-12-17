@@ -1,0 +1,13 @@
+services:
+  localrestserver:
+    build:
+      context: .
+    volumes:
+      - ./mnt:/mnt
+    restart: always
+    networks:
+      - localrestserver
+
+networks:
+  localrestserver:
+    name: localrestserver

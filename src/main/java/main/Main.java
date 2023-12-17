@@ -8,10 +8,11 @@ import routes.Routes;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        String ipAddress = "localrestserver";
         int port = 6491;
-        String databaseFilename = "localDatabase.json";
+        String databaseFilename = "/mnt/localDatabase.json";
         if (args.length > 0) {
-            databaseFilename = args[0];
+            ipAddress = args[0];
         }
         if (args.length > 1) {
             try {
@@ -20,9 +21,12 @@ public class Main {
                 // default port
             }
         }
+        if (args.length > 2) {
+            databaseFilename = args[2];
+        }
 
         IDatabase database = new LocalDatabase(databaseFilename);
-        Routes.EstablishRoutes(database, port);
+        Routes.EstablishRoutes(database, ipAddress, port);
 
         // stop database at shutdown
         Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -32,7 +36,7 @@ public class Main {
             }
         });
 
-        System.out.println(String.format("Endpoint listening at: localhost:%d", port));
+        System.out.println(String.format("Endpoint listening at: %s:%d", ipAddress, port));
 
         spark.Spark.awaitStop();
     }

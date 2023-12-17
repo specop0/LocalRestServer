@@ -1,0 +1,24 @@
+@url=http://localrestserver:6491
+
+###
+
+POST {{url}}/data/new
+
+###
+
+PUT {{url}}/data/myApp/myKey
+Content-Type: application/json
+
+{
+    "a": 0,
+    "b": true
+}
+
+
+###
+
+GET {{url}}/data/myApp/myKey
+
+###
+
+DELETE {{url}}/data/myApp/myKey

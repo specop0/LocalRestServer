@@ -1,0 +1,14 @@
+services:
+  localrestserver:
+    image: maven
+    volumes:
+      - ../..:/workspaces:cached
+      - ../mnt:/mnt
+    command: sleep infinity
+    networks:
+      - localrestserver
+
+networks:
+  localrestserver:
+    name: localrestserver
+    external: true

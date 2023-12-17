@@ -4,8 +4,8 @@ import models.IDatabase;
 
 public class Routes {
 
-    public static void EstablishRoutes(IDatabase database, int port) {
-        spark.Spark.ipAddress("localhost");
+    public static void EstablishRoutes(IDatabase database, String ipAddress, int port) {
+        spark.Spark.ipAddress(ipAddress);
         spark.Spark.port(port);
         spark.Spark.get("/data/*/*", "application/json", new GetDataRoute(database));
         spark.Spark.put("/data/*/*", "application/json", new SetDataRoute(database));

@@ -19,9 +19,9 @@ public abstract class RouteTestsBase {
 
     @Before
     public void SetUp() throws Exception {
-        this.Database = new LocalDatabase("localDatabase.json");
+        this.Database = new LocalDatabase("/mnt/localDatabase.json");
         this.Port = 12345;
-        Routes.EstablishRoutes(this.Database, this.Port);
+        Routes.EstablishRoutes(this.Database, "localhost", this.Port);
         Spark.awaitInitialization();
     }
 
