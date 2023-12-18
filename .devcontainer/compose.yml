@@ -1,6 +1,7 @@
 services:
   localrestserver:
-    image: maven
+    build:
+      context: .
     volumes:
       - ../..:/workspaces:cached
       - ../mnt:/mnt

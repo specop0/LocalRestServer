@@ -5,6 +5,7 @@ services:
     volumes:
       - ./mnt:/mnt
     restart: always
+    user: "1000:1000"
     networks:
       - localrestserver
 

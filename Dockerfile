@@ -17,7 +17,7 @@ WORKDIR /src
 RUN mvn clean compile assembly:single
 
 # Run
-FROM openjdk
+FROM amazoncorretto:11
 WORKDIR /app
 COPY --from=publish /src/target/LocalRestServer-1.0-SNAPSHOT-jar-with-dependencies.jar LocalRestServer.jar
 CMD java -jar LocalRestServer.jar
