@@ -8,22 +8,9 @@ import routes.Routes;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String ipAddress = "localrestserver";
-        int port = 6491;
-        String databaseFilename = "/mnt/localDatabase.json";
-        if (args.length > 0) {
-            ipAddress = args[0];
-        }
-        if (args.length > 1) {
-            try {
-                port = Integer.parseInt(args[1]);
-            } catch (NumberFormatException ex) {
-                // default port
-            }
-        }
-        if (args.length > 2) {
-            databaseFilename = args[2];
-        }
+        String ipAddress = Configuration.GetString("ipAddress", "localhost");
+        int port = Configuration.GetInt("port", 6491);
+        String databaseFilename = Configuration.GetString("databaseFilename", "/mnt/localDatabase.json");
 
         IDatabase database = new LocalDatabase(databaseFilename);
         Routes.EstablishRoutes(database, ipAddress, port);

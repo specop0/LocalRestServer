@@ -8,6 +8,8 @@ services:
     user: "1000:1000"
     networks:
       - localrestserver
+    environment:
+      - APPSETTINGS_IPADDRESS=localrestserver
 
 networks:
   localrestserver:

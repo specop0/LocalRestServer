@@ -4,10 +4,6 @@ REST server to load & save JSON data. Data is saved in a JSON file at shutdown.
 
 Useful with cron job which need to load & save data, but should avoid file system operations.
 
-# Configuration
-
-First optional argument is the filename of the JSON file. Default is "localDatabase.json". Second optional argument is the port of the server. Default is 6491.
-
 ## Usage
 
 ### New
