@@ -3,9 +3,9 @@ services:
     build:
       context: .
     volumes:
-      - ./mnt:/mnt
+      - db:/mnt
     restart: always
-    user: "1000:1000"
+    user: "33:33"
     networks:
       - localrestserver
     environment:
@@ -14,3 +14,6 @@ services:
 networks:
   localrestserver:
     name: localrestserver
+
+volumes:
+  db:
