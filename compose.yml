@@ -7,13 +7,14 @@ services:
     restart: always
     user: "33:33"
     networks:
-      - localrestserver
+      - main
     environment:
       - APPSETTINGS_IPADDRESS=localrestserver
 
 networks:
-  localrestserver:
-    name: localrestserver
+  main:
+    name: main
+    external: true
 
 volumes:
   db:
